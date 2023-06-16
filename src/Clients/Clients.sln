@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{574B3F9C-6170-4136-A640-CF85848DEE39}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Core", "2-Core", "{574B3F9C-6170-4136-A640-CF85848DEE39}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{2FC38D8D-1AD2-42AF-B965-C8BF849D4907}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Persistence", "3-Persistence", "{2FC38D8D-1AD2-42AF-B965-C8BF849D4907}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{A42624EF-E505-4348-B2D7-A7AEC0691869}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Presentation", "1-Presentation", "{A42624EF-E505-4348-B2D7-A7AEC0691869}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{AA9B5813-CAB2-4147-9B77-B4C5DF89224E}"
 EndProject
