@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <Folder Include="DTOs\Response\" />
-    <Folder Include="DTOs\Request\" />
-    <Folder Include="Entities\" />
     <Folder Include="Interfaces\AppService\" />
     <Folder Include="Interfaces\Repository\" />
     <Folder Include="Utils\" />
