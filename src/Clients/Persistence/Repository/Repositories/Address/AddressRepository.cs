@@ -44,10 +44,26 @@ namespace Repository.Repositories
                 }
             }
         }
-            
 
-        public void Update(Addres address) =>
-            _context.Address.Update(address);
+
+        public async void Update(Addres address) 
+        {
+            using (var conn = new SqlConnection(_databaseConnection))
+            {
+                try
+                {
+                    conn.Open();
+
+                    var sql = "SPU_InserirLogradouro";
+
+                    await conn.ExecuteAsync(sql, new { addressId = address.Id, logradouro = address.Logradouro }, commandType: System.Data.CommandType.StoredProcedure);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
 
         public void Delete(Addres address) =>
             _context.Address.Remove(address);
