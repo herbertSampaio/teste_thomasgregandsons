@@ -4,7 +4,7 @@
 
 namespace Repository.Migrations
 {
-    public partial class SPI_InserirLogradouro : Migration
+    public partial class SPI_Logradouro : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,7 +45,7 @@ namespace Repository.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            var sp = @"DROP PROCEDURE SPI_InserirLogradouro";
+            var sp = @"DROP PROCEDURE SPI_Logradouro";
 
             migrationBuilder.Sql(sp);
         }

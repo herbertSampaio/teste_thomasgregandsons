@@ -34,7 +34,7 @@ namespace Repository.Repositories
                 {
                     conn.Open();
 
-                    var sql = "SPI_InserirLogradouro";
+                    var sql = "SPI_Logradouro";
 
                     await conn.ExecuteAsync(sql, new { clienteId = address.ClienteId, logradouro = address.Logradouro }, commandType: System.Data.CommandType.StoredProcedure);
                 }
@@ -54,7 +54,7 @@ namespace Repository.Repositories
                 {
                     conn.Open();
 
-                    var sql = "SPU_InserirLogradouro";
+                    var sql = "SPU_Logradouro";
 
                     await conn.ExecuteAsync(sql, new { addressId = address.Id, logradouro = address.Logradouro }, commandType: System.Data.CommandType.StoredProcedure);
                 }

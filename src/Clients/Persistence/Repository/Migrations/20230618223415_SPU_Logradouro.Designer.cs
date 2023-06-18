@@ -12,8 +12,8 @@ using Repository.Contexts;
 namespace Repository.Migrations
 {
     [DbContext(typeof(ClientsContext))]
-    [Migration("20230618222150_SPU_InserirLogradouro")]
-    partial class SPU_InserirLogradouro
+    [Migration("20230618223415_SPU_Logradouro")]
+    partial class SPU_Logradouro
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

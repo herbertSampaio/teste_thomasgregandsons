@@ -12,8 +12,8 @@ using Repository.Contexts;
 namespace Repository.Migrations
 {
     [DbContext(typeof(ClientsContext))]
-    [Migration("20230618215954_SPI_InserirLogradouro")]
-    partial class SPI_InserirLogradouro
+    [Migration("20230618223241_SPI_Logradouro")]
+    partial class SPI_Logradouro
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -4,7 +4,7 @@
 
 namespace Repository.Migrations
 {
-    public partial class SPU_InserirLogradouro : Migration
+    public partial class SPU_Logradouro : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
