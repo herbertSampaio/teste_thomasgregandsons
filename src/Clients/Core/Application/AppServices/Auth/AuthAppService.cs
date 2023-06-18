@@ -44,10 +44,10 @@ namespace Application.AppServices
         public async Task<AuthResponseDto> AutenticateAsync(AuthDto auth)
         {
             if (string.IsNullOrEmpty(auth.Login))
-                _notification.AddNotification(new Notification("Login is required"));
+                _notification.AddNotification(new Notification("Login é obrigatório"));
 
             if (string.IsNullOrEmpty(auth.Password))
-                _notification.AddNotification(new Notification("Password is required"));
+                _notification.AddNotification(new Notification("Password é obrigatório"));
 
             if (!_notification.HasNotifications)
             {
@@ -56,7 +56,7 @@ namespace Application.AppServices
 
                 if (user == null)
                 {
-                    _notification.AddNotification(new Notification("Invalid login or password"));
+                    _notification.AddNotification(new Notification("Login ou Password inválidos"));
                     return null;
                 }
 
@@ -72,9 +72,15 @@ namespace Application.AppServices
 
             if (userDomain == null)
             {
-                _notification.AddNotification(new Notification("User not found"));
+                _notification.AddNotification(new Notification("Usuario não cadastrado"));
             }
-            else
+
+            if (userDomain != null && userDomain.Login != user.Login)
+            {
+                _notification.AddNotification(new Notification("Não é possível alterar dados desse login, permissão negada!"));
+            }
+
+            if (!_notification.HasNotifications)
             {
                 var senhaHash = user.Login.GenerateHashPassword(user.NewPassword);
 
@@ -99,7 +105,7 @@ namespace Application.AppServices
             {
                 Expires = dateExpiration,
                 Subject = new ClaimsIdentity(claims),
-                SigningCredentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature)
+                SigningCredentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256Signature)
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();

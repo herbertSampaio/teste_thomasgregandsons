@@ -28,7 +28,7 @@ namespace Domain.Entities
         }
 
         /// <summary>
-        /// Create Cliente
+        /// Criar Cliente
         /// </summary>
         /// <param name="name"></param>
         /// <param name="email"></param>
@@ -38,10 +38,13 @@ namespace Domain.Entities
             Name = name;
             Email = email;
             Logotipo = logotipo;
+
+            Users = new List<User>();
+            Logradouros = new HashSet<Addres>();
         }
 
         /// <summary>
-        /// Update Client
+        /// Atualizar Cliente
         /// </summary>
         /// <param name="name"></param>
         /// <param name="logotipo"></param>

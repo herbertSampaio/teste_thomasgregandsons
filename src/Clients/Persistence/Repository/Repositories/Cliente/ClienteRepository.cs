@@ -38,10 +38,14 @@ namespace Repository.Repositories
 
         public Cliente GetById(int clienteId) =>
             _context.Cliente
+                .Include(x => x.Users)
                 .Include(x => x.Logradouros)
-                .First(x => x.Id == clienteId);
+                .FirstOrDefault(x => x.Id == clienteId);
 
         public bool ValidateByEmail(string email) =>
             _context.Cliente.Any(x => x.Email == email);
+
+        public bool ValidateByEmailUpdate(int clienteId, string email) =>
+            _context.Cliente.Any(x => x.Email == email && x.Id != clienteId);
     }
 }

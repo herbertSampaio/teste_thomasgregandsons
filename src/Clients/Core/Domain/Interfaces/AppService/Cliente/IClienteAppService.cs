@@ -13,6 +13,5 @@ namespace Domain.Interfaces.AppService
         Task Update(int userId, int clienteId, ClienteDto cliente);
         Task Delete(int userId, int clienteId);
         ClienteResponseDto GetById(int userId, int clienteId);
-        ClienteResponseDto GetByUserId(int userId);
     }
 }

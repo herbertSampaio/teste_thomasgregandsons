@@ -15,5 +15,6 @@ namespace Domain.Interfaces.Repository
         Cliente GetByUserId(int userId);
         Cliente GetById(int clienteId);
         bool ValidateByEmail(string email);
+        bool ValidateByEmailUpdate(int clienteId, string email);
     }
 }

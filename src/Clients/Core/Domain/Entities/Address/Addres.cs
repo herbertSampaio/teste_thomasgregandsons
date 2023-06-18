@@ -23,7 +23,7 @@ namespace Domain.Entities
         }
 
         /// <summary>
-        /// Create Address
+        /// Criar Logradouro
         /// </summary>
         /// <param name="logradouro"></param>
         /// <param name="clientId"></param>
@@ -34,7 +34,7 @@ namespace Domain.Entities
         }
 
         /// <summary>
-        /// Update Address
+        /// Atualizar Logradouro
         /// </summary>
         /// <param name="logradouro"></param>
         public void Update(string logradouro)

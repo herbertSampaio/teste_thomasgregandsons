@@ -24,7 +24,7 @@ namespace Domain.Entities
         }
 
         /// <summary>
-        /// Create User
+        /// Criar Usuario
         /// </summary>
         /// <param name="login"></param>
         /// <param name="password"></param>
@@ -36,7 +36,7 @@ namespace Domain.Entities
         }
 
         /// <summary>
-        /// Update PassWord
+        /// Atualizar senha
         /// </summary>
         /// <param name="password"></param>
         public void UpdatePassword(string password)
@@ -45,7 +45,7 @@ namespace Domain.Entities
         }
 
         /// <summary>
-        /// Update Status
+        /// Atualizar status
         /// </summary>
         /// <param name="ativo"></param>
         public void UpdateStatus(bool ativo)
