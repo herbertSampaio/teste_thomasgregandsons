@@ -1,4 +1,6 @@
 ﻿using Domain.Interfaces;
+using Domain.Utils;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Cliente : IEntityBase
+    public class Cliente : Validation, IEntityBase
     {
         public int Id { get; set; }
         public string Name { get; private set; }
@@ -52,6 +54,54 @@ namespace Domain.Entities
         {
             Name = name;
             Logotipo = logotipo;
+        }
+
+        /// <summary>
+        /// Metodo para validação dos campos
+        /// </summary>
+        public void Validate()
+        {
+            Validate(this, new ClienteValidation());
+        }
+    }
+
+    /// <summary>
+    /// Validação dos dados do cliente
+    /// </summary>
+    public class ClienteValidation : AbstractValidator<Cliente>
+    {
+        public ClienteValidation()
+        {
+            RuleFor(x => x.Name)
+                .NotEmpty()
+                .WithMessage("Nome é obrigatório")
+                .MaximumLength(100)
+                .WithMessage("Nome deve conter no maximo 100 caracters");
+
+            RuleFor(x => x.Email)
+                .NotEmpty()
+                .WithMessage("Email é obrigatório")
+                .MaximumLength(100)
+                .WithMessage("Nome deve conter no maximo 100 caracters");
+
+            RuleFor(x => x.Logotipo)
+                .NotEmpty()
+                .WithMessage("Logotipo é obrigatório")
+                .MaximumLength(150)
+                .WithMessage("Nome deve conter no maximo 100 caracters");
+
+            RuleFor(x => x.Logradouros)
+                .NotEmpty()
+                .WithMessage("É obrigatório pelo menos um logradouro");
+
+            RuleForEach(x => x.Logradouros).ChildRules(order =>
+            {
+                order.RuleFor(l => l.Logradouro)
+                .NotEmpty()
+                .WithMessage("Logradouro é obrigatório")
+                .MaximumLength(100)
+                .WithMessage("Logradouro deve conter no maximo 100 caracters");
+            });
         }
     }
 }

@@ -27,17 +27,8 @@ namespace Application.AppServices
 
         public async Task<Tuple<string>> AddAsync(ClienteDto cliente)
         {
-            if (string.IsNullOrEmpty(cliente.Name))
-                _notification.AddNotification(new Notification("Nome deve ser informado"));
-
-            if (string.IsNullOrEmpty(cliente.Email))
-                _notification.AddNotification(new Notification("E-mail deve ser informado"));
-
-            if (_repository.ValidateByEmail(cliente.Email))
+            if (!string.IsNullOrEmpty(cliente.Email) && _repository.ValidateByEmail(cliente.Email))
                 _notification.AddNotification(new Notification("E-mail já cadastrado"));
-
-            if(!cliente.Logradouros.Any())
-                _notification.AddNotification(new Notification("Deve ser informado ao menos um logradouro"));
 
             var senhaGuid = Guid.NewGuid().ToString().ToUpper().Split('-')[0];
             if (!_notification.HasNotifications)
@@ -52,13 +43,15 @@ namespace Application.AppServices
                 foreach (var item in cliente.Logradouros)
                     clienteDomain.Logradouros.Add(new Addres(item.Logradouro, clienteDomain.Id));
 
-                //if (clienteDomain.Invalid)
-                //    _notification.AddNotification(clienteDomain.ValidationResult);
-                //else
-                //{
-                await _repository.AddAsync(clienteDomain);
-                await _repository.UnitOfWork.Commit();
-                //}
+                clienteDomain.Validate();
+
+                if (clienteDomain.Invalid)
+                    _notification.AddNotification(clienteDomain.ValidationResult);
+                else
+                {
+                    await _repository.AddAsync(clienteDomain);
+                    await _repository.UnitOfWork.Commit();
+                }
             }
 
             return new Tuple<string>($"Cadastro realizado com sucesso, utilize seu email como login e o codigo {senhaGuid} como senha");
@@ -90,7 +83,7 @@ namespace Application.AppServices
             if (clienteDomain == null)
                 _notification.AddNotification(new Notification("Cliente não existe"));
 
-            if (clienteDomain != null && !clienteDomain.Users.All(x=>x.Id == userId))
+            if (clienteDomain != null && !clienteDomain.Users.All(x => x.Id == userId))
             {
                 _notification.AddNotification(new Notification("Ação não permitida, permissão negada!"));
             }
@@ -98,18 +91,18 @@ namespace Application.AppServices
             if (_notification.HasNotifications)
                 return null;
             else
-            return new ClienteResponseDto
-            {
-                Id = clienteDomain.Id,
-                Email = clienteDomain.Email,
-                Logotipo = clienteDomain.Logotipo,
-                Name = clienteDomain.Name,
-                Logradouros = clienteDomain.Logradouros.Select(x => new AddressResponseDto
+                return new ClienteResponseDto
                 {
-                    Id = x.Id,
-                    Logradouro = x.Logradouro
-                }).ToList()
-            };
+                    Id = clienteDomain.Id,
+                    Email = clienteDomain.Email,
+                    Logotipo = clienteDomain.Logotipo,
+                    Name = clienteDomain.Name,
+                    Logradouros = clienteDomain.Logradouros.Select(x => new AddressResponseDto
+                    {
+                        Id = x.Id,
+                        Logradouro = x.Logradouro
+                    }).ToList()
+                };
         }
 
         public async Task Update(int userId, int clienteId, ClienteDto cliente)
@@ -124,17 +117,8 @@ namespace Application.AppServices
                 _notification.AddNotification(new Notification("Ação não permitida, permissão negada!"));
             }
 
-            if (string.IsNullOrEmpty(cliente.Name))
-                _notification.AddNotification(new Notification("Nome deve ser informado"));
-
-            if (string.IsNullOrEmpty(cliente.Email))
-                _notification.AddNotification(new Notification("E-mail deve ser informado"));
-
-            if (_repository.ValidateByEmailUpdate(clienteId, cliente.Email))
+            if (!string.IsNullOrEmpty(cliente.Email) && _repository.ValidateByEmailUpdate(clienteId, cliente.Email))
                 _notification.AddNotification(new Notification("E-mail já cadastrado"));
-
-            if (!cliente.Logradouros.Any())
-                _notification.AddNotification(new Notification("Deve ser informado ao menos um logradouro"));
 
             if (!_notification.HasNotifications)
             {
@@ -144,13 +128,15 @@ namespace Application.AppServices
                 foreach (var item in cliente.Logradouros)
                     clienteDomain.Logradouros.Add(new Addres(item.Logradouro, clienteDomain.Id));
 
-                //if (clienteDomain.Invalid)
-                //    _notification.AddNotification(clienteDomain.ValidationResult);
-                //else
-                //{
-                _repository.Update(clienteDomain);
-                await _repository.UnitOfWork.Commit();
-                //}
+                clienteDomain.Validate();
+
+                if (clienteDomain.Invalid)
+                    _notification.AddNotification(clienteDomain.ValidationResult);
+                else
+                {
+                    _repository.Update(clienteDomain);
+                    await _repository.UnitOfWork.Commit();
+                }
             }
         }
     }
