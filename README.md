@@ -59,13 +59,13 @@ Caso for rodar o projeto localmente
 
 ## Como rodar a aplicação :arrow_forward:
 
-No terminal, clone o projeto: 
+Abra um terminal e clone o projeto: 
 
 ```
 git clone https://github.com/herbertSampaio/teste_thomasgregandsons.git
 ```
 
-<b>Rodar projeto localmente</b>
+<b>Rodar projeto localmente via terminal</b>
 <ul>
   <li>Vá até a pasta src\Clients\Presentantion\WebAPI abra o arquivo appsettings.json e altere os dados da string da conexão DefaultConnection com os dados de acesso ao SQL</li>
   <li>Abra um terminal e navegue até a pasta src\Clients\Presentantion\WebAPI</li>
@@ -80,6 +80,17 @@ git clone https://github.com/herbertSampaio/teste_thomasgregandsons.git
   <li>Será exibido o Swagger da API com os endpoints criados</li>
 </ul>
 
+<b>Rodar projeto localmente via VS2022</b>
+<ul>
+  <li>Também é possível executar o projeto pelo visual studio 2022</li>
+  <li>Vá até a pasta src\Clients e abra a solution Clients.sln</li>
+  <li>Faça restore dos pacotes nugets</li>
+  <li>Marque o projeto WebApi como startup project</li>
+  <li>Marque o projeto WebApi como startup project</li>
+  <li>Abra o arquivo appsettings.json e altere os dados da string da conexão DefaultConnection com os dados de acesso ao SQL</li>
+  <li>Execute o projeto com F5 ou Ctrl+F5</li>
+  <li>Será exibido o Swagger da API com os endpoints criados</li>
+</ul>
 <br>
 
 ## Resumo
@@ -100,10 +111,12 @@ git clone https://github.com/herbertSampaio/teste_thomasgregandsons.git
 <li>ASP.NET Core 6.0</li>
 <li>ASP.NET WebApi Core</li>
 <li>Entity Framework</li>
+<li>Dapper</li>
 <li>SQL Server</li>
 <li>Swagger UI</li>
 <li>Migrations</li>
 <li>FluentValidation</li>
+<li>Filters exceptions</li>
 </ul>
 
 ## Arquitetura
