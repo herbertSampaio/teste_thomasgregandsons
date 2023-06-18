@@ -100,6 +100,7 @@ namespace Application.AppServices
                     Logradouros = clienteDomain.Logradouros.Select(x => new AddressResponseDto
                     {
                         Id = x.Id,
+                        ClienteId = x.ClienteId,
                         Logradouro = x.Logradouro
                     }).ToList()
                 };

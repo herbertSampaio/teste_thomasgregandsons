@@ -20,6 +20,7 @@ namespace WebApi.Configuration
 
             services.AddScoped<IAuthAppService, AuthAppService>();
             services.AddScoped<IClienteAppService, ClienteAppService>();
+            services.AddScoped<IAddressAppService, AddressAppService>();
 
             #endregion
 
@@ -27,6 +28,7 @@ namespace WebApi.Configuration
 
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IAddressRepository, AddressRepository>();
 
             #endregion
         }

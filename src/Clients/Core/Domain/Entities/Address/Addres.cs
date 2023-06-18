@@ -43,6 +43,14 @@ namespace Domain.Entities
         {
             Logradouro = logradouro;
         }
+
+        /// <summary>
+        /// Metodo para validação dos campos
+        /// </summary>
+        public void Validate()
+        {
+            Validate(this, new AddressValidation());
+        }
     }
 
     /// <summary>

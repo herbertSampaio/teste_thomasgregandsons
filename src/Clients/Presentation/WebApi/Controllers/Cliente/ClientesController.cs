@@ -50,7 +50,7 @@ namespace WebApi.Controllers.Cliente
         /// <returns></returns>
         [HttpDelete]
         [Route("cliente/{clienteId}")]
-        public async Task<IActionResult> DeleteCategory(int clienteId)
+        public async Task<IActionResult> DeleteCliente(int clienteId)
         {
             await _service.Delete(UserLoggedId, clienteId);
             return Ok(new Tuple<string>("Cliente deletado com sucesso"));
