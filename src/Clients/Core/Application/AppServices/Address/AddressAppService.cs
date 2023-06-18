@@ -98,7 +98,7 @@ namespace Application.AppServices
                 };
         }
 
-        public List<AddressResponseDto> GetByClienteId(int userId, int clienteId)
+        public async Task<List<AddressResponseDto>> GetByClienteId(int userId, int clienteId)
         {
             var clienteDomain = _repositoryCliente.GetById(clienteId);
 
@@ -110,7 +110,7 @@ namespace Application.AppServices
                 _notification.AddNotification(new Notification("Ação não permitida, permissão negada!"));
             }
 
-            var listAddress = _repository.GetByClienteId(clienteId);
+            var listAddress = await _repository.GetByClienteId(clienteId);
 
             if (_notification.HasNotifications)
                 return null;

@@ -51,9 +51,9 @@ namespace WebApi.Controllers.Address
         /// <returns></returns>
         [HttpGet]
         [Route("logradouros/{clienteId}")]
-        public IActionResult GetLogradourosByClienteId(int clienteId)
+        public async Task<IActionResult> GetLogradourosByClienteId(int clienteId)
         {
-            return Ok(_service.GetByClienteId(UserLoggedId, clienteId));
+            return Ok(await _service.GetByClienteId(UserLoggedId, clienteId));
         }
 
         /// <summary>

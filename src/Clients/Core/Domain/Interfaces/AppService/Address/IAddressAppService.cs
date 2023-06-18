@@ -13,6 +13,6 @@ namespace Domain.Interfaces
         Task Update(int userId, int clienteId, int addressId, AddressDto address);
         Task Delete(int userId, int addressId);
         AddressResponseDto GetById(int userId, int addressId);
-        List<AddressResponseDto> GetByClienteId(int userId, int clienteId);
+        Task<List<AddressResponseDto>> GetByClienteId(int userId, int clienteId);
     }
 }

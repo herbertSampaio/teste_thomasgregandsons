@@ -9,6 +9,7 @@ using Repository.Contexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -73,8 +74,26 @@ namespace Repository.Repositories
                 .Include(x => x.Cliente).ThenInclude(u => u.Users)
                 .FirstOrDefault(x => x.Id == addressId);
 
-        public List<Addres> GetByClienteId(int clienteId) =>
-            _context.Address
-                .Where(x => x.ClienteId == clienteId).ToList();
+        public async Task<List<Addres>> GetByClienteId(int clienteId) 
+        {
+            IEnumerable<Addres> list;
+            using (var conn = new SqlConnection(_databaseConnection))
+            {
+                try
+                {
+                    conn.Open();
+
+                    var sql = "SPS_Logradouro";
+
+                    list = await conn.QueryAsync<Addres>(sql, new { clienteId = clienteId }, commandType: System.Data.CommandType.StoredProcedure);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
+                return list?.ToList();
+            }
+        }
     }
 }

@@ -13,6 +13,6 @@ namespace Domain.Interfaces.Repository
         void Update(Addres address);
         void Delete(Addres address);
         Addres GetById(int addressId);
-        List<Addres> GetByClienteId(int clienteId);
+        Task<List<Addres>> GetByClienteId(int clienteId);
     }
 }
