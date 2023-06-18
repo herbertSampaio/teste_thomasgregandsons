@@ -46,6 +46,7 @@
 
 :heavy_check_mark: Cadastro de Logradouros: É possível realizar cadastros de logradouros para um determinado cliente
 
+:heavy_check_mark: Autenticação: É possível se autenticar na API e alterar senha depois de autenticado
 
 ## Pré-requisitos
 
@@ -72,9 +73,10 @@ git clone https://github.com/herbertSampaio/teste_thomasgregandsons.git
   <li>Fazer a execucao do projeto com o comando dotnet run</li>
   <li>Será feito a compilação da API, no final será exibido à URL para abrir a API, acesse a url em um browser passando no final da urm o link /swagger/index.html</li>
 </ul>
-<br>
 <ul>
-  <li>No browser cole a URL: <a href="https://localhost:7094/swagger/index.html" target="_blank">http://localhost:5039/swagger/index.html</a></li>
+  <li>No browser cole uma das URLs</li>
+  <li><a href="https://localhost:7094/swagger/index.html" target="_blank">href="https://localhost:7094/swagger/index.html</a></li>
+  <li><a href="http://localhost:5093/swagger/index.html" target="_blank">http://localhost:5039/swagger/index.html</a></li>
   <li>Será exibido o Swagger da API com os endpoints criados</li>
 </ul>
 
