@@ -14,8 +14,13 @@ namespace Domain.Entities
         public DateTime? CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
 
-        public int ClientId { get; private set; }
-        public virtual Cliente Client { get; set; }
+        public int ClienteId { get; private set; }
+        public virtual Cliente Cliente { get; set; }
+
+        public Addres()
+        {
+            
+        }
 
         /// <summary>
         /// Create Address
@@ -24,7 +29,7 @@ namespace Domain.Entities
         /// <param name="clientId"></param>
         public Addres(string logradouro, int clientId)
         {
-            ClientId = clientId;
+            ClienteId = clientId;
             Logradouro = logradouro;
         }
 

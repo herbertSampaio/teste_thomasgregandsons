@@ -43,7 +43,7 @@ namespace Application.AppServices
                 var userDomain = new User(cliente.Email, senhaHash);
                 var clienteDomain = new Cliente(cliente.Name, cliente.Email,cliente.Logotipo);
 
-                clienteDomain.User = userDomain;
+                userDomain.Cliente = clienteDomain;
 
                 //if (clienteDomain.Invalid)
                 //    _notification.AddNotification(clienteDomain.ValidationResult);

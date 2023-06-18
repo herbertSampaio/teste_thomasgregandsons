@@ -17,13 +17,13 @@ namespace Domain.Entities
         public DateTime? CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
 
-        public int UserId { get; private set; }
-        public virtual User User { get; set; }
+        public virtual ICollection<User> Users { get; set; }
 
         public virtual ICollection<Addres> Logradouros { get; set; }
 
         public Cliente()
         {
+            Users = new List<User>();
             Logradouros = new HashSet<Addres>();
         }
 
@@ -49,11 +49,6 @@ namespace Domain.Entities
         {
             Name = name;
             Logotipo = logotipo;
-        }
-
-        public void AssociarUser(int userId)
-        {
-            UserId = userId;
         }
     }
 }

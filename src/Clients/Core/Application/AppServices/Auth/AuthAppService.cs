@@ -111,7 +111,7 @@ namespace Application.AppServices
             return new AuthResponseDto
             {
                 Token = token,
-                UserName = user.Client.Name,
+                UserName = user.Cliente.Name,
                 ExpireIn = _tokenConfigurations.Seconds
             };
         }

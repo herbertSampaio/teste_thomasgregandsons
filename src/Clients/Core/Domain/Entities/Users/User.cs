@@ -16,8 +16,12 @@ namespace Domain.Entities
         public DateTime? CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
 
-        public int ClientId { get; private set; }
-        public virtual Cliente Client { get; set; }
+        public int ClienteId { get; set; }
+        public virtual Cliente Cliente { get; set; }
+
+        public User()
+        {
+        }
 
         /// <summary>
         /// Create User
@@ -47,6 +51,15 @@ namespace Domain.Entities
         public void UpdateStatus(bool ativo)
         {
             Ativo = ativo;
+        }
+
+        /// <summary>
+        /// Associar Cliente
+        /// </summary>
+        /// <param name="clienteId"></param>
+        public void AssociarCliente(int clienteId)
+        {
+            ClienteId = clienteId;
         }
     }
 }
