@@ -1,7 +1,10 @@
-﻿using Domain.Entities;
+﻿using Dapper;
+using Domain.Entities;
 using Domain.Interfaces;
 using Domain.Interfaces.Repository;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Repository.Contexts;
 using System;
 using System.Collections.Generic;
@@ -15,14 +18,33 @@ namespace Repository.Repositories
     {
         private readonly ClientsContext _context;
         public IUnitOfWork UnitOfWork => _context;
+        private readonly string _databaseConnection;
 
-        public AddressRepository(ClientsContext context)
+        public AddressRepository(ClientsContext context, IConfiguration configuration)
         {
             _context = context;
+            _databaseConnection = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task AddAsync(Addres address) =>
-            await _context.Address.AddAsync(address);
+        public async Task AddAsync(Addres address)
+        {
+            using (var conn = new SqlConnection(_databaseConnection))
+            {
+                try
+                {
+                    conn.Open();
+
+                    var sql = "SPI_InserirLogradouro";
+
+                    await conn.ExecuteAsync(sql, new { clienteId = address.ClienteId, logradouro = address.Logradouro }, commandType: System.Data.CommandType.StoredProcedure);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+            
 
         public void Update(Addres address) =>
             _context.Address.Update(address);
