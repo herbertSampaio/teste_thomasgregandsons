@@ -15,7 +15,7 @@ namespace Domain.Entities
         public DateTime? UpdateDate { get; set; }
 
         public int ClientId { get; private set; }
-        public virtual Client Client { get; set; }
+        public virtual Cliente Client { get; set; }
 
         /// <summary>
         /// Create Address

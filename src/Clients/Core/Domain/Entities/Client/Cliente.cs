@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Client : IEntityBase
+    public class Cliente : IEntityBase
     {
         public int Id { get; set; }
         public string Name { get; private set; }
@@ -22,7 +22,7 @@ namespace Domain.Entities
 
         public virtual ICollection<Addres> Logradouros { get; set; }
 
-        public Client()
+        public Cliente()
         {
             Logradouros = new HashSet<Addres>();
         }
@@ -33,7 +33,7 @@ namespace Domain.Entities
         /// <param name="name"></param>
         /// <param name="email"></param>
         /// <param name="logotipo"></param>
-        public Client(string name, string email, string logotipo)
+        public Cliente(string name, string email, string logotipo)
         {
             Name = name;
             Email = email;

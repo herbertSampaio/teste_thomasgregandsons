@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.DTOs
+﻿namespace Domain.DTOs
 {
     public class AuthResponseDto
     {
         public string Token { get; set; }
+        public string UserName { get; set; }
         public int ExpireIn { get; set; }
     }
 }
